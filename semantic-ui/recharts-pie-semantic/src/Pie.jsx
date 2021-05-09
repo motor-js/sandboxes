@@ -45,10 +45,6 @@ const PieExampleCompact = () => {
 
   const { data, dataKeys } = dataSet;
 
-  const handleSelect = (c, i) => {
-    select(0, [c.elemNumber], false);
-  };
-
   return (
     <ResponsiveContainer width="100%" height={250}>
       {data ? (
@@ -62,7 +58,7 @@ const PieExampleCompact = () => {
                 isAnimationActive={false}
                 data={data}
                 label={(value) => numeral(value.percent).format("0.00%")}
-                onClick={handleSelect}
+                onClick={(c) => select(0, [c.elemNumber], false)}
               >
                 {data.map((entry, index) => (
                   <Cell key={index} fill={colors[index % colors.length]} />
