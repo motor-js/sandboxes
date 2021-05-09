@@ -47,6 +47,15 @@ const DonutExampleCompact = () => {
 
   const { data, dataKeys } = dataSet;
 
+  const handleSelect = (c, i) => {
+    const points = c.points;
+    let elemNumber = null;
+    points.map((p) => {
+      if (p.x < i.pageX) elemNumber = p.payload.elemNumber;
+    });
+    select(0, [elemNumber], false);
+  };
+
   return (
     <ResponsiveContainer width="100%" height={250}>
       {data ? (
@@ -65,6 +74,7 @@ const DonutExampleCompact = () => {
                 dataKey={key}
                 fill={colors[index]}
                 isAnimationActive={false}
+                onClick={handleSelect}
               >
                 {dataKeys.length === 1 &&
                   data.map((entry, index) => (
