@@ -52,6 +52,7 @@ const DonutExampleCompact = () => {
           {dataKeys &&
             dataKeys.map((key, index) => (
               <Pie
+                // TODO replace nameKey={nameKey} from useData
                 nameKey="Category"
                 key={index}
                 dataKey={key}
