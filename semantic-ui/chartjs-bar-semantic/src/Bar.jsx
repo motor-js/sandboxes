@@ -40,6 +40,8 @@ const DonutExampleCompact = () => {
 
   const labels = data && data.map((c) => c.Category);
   const dataValues = data && data.map((c) => c.Revenue);
+  const dataElemNumbers = data && data.map((c) => c.elemNumber);
+  // console.log(dataElemNumbers);
 
   const chartData = {
     labels,
@@ -57,13 +59,7 @@ const DonutExampleCompact = () => {
   const options = {
     onClick: function (evt, element) {
       if (element.length > 0) {
-        var ind = element[0]._index;
-        // if (confirm("Do you want to remove this point?")) {
-        //   data.datasets[0].data.splice(ind, 1);
-        //   data.labels.splice(ind, 1);
-        //   myLineChart.update(data);
-        // }
-        console.log(element[0].element);
+        select(0, [dataElemNumbers[element[0].index]], false);
       }
     },
     scales: {
