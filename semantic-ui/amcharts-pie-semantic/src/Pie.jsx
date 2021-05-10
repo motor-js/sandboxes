@@ -60,7 +60,7 @@ const PieExampleCompact = () => {
     let pieSeries = x.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "Revenue";
     pieSeries.dataFields.category = "Category";
-    pieSeries.slices.template.propertyFields.fill = "Colors";
+    pieSeries.slices.template.propertyFields.fill = "fill";
     pieSeries.slices.template.propertyFields.elemNumber = "elemNumber";
 
     pieSeries.slices.template.events.on(
@@ -81,7 +81,8 @@ const PieExampleCompact = () => {
   // Load data into chart
   React.useEffect(() => {
     if (chart.current) {
-      data && data.map((element, index) => (element.Colors = colors[index]));
+      // TODO Remove once colur addded as item in object
+      data && data.map((element, index) => (element.fill = colors[index]));
       chart.current.data = data;
     }
   }, [data]);
