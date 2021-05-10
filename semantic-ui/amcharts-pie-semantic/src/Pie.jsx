@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useEffect } from "react";
 
 import { useData } from "@motor-js/engine";
 
@@ -51,8 +51,6 @@ const PieExampleCompact = () => {
     // Create chart instance
     let x = am4core.create("chartdiv", am4charts.PieChart);
 
-    // data && data.map((element, index) => (element.Colors = colors[index]));
-
     // Add data
     x.data = data;
 
@@ -79,7 +77,7 @@ const PieExampleCompact = () => {
   }, []);
 
   // Load data into chart
-  React.useEffect(() => {
+  useEffect(() => {
     if (chart.current) {
       // TODO Remove once colur addded as item in object
       data && data.map((element, index) => (element.fill = colors[index]));
