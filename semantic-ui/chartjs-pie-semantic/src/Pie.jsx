@@ -1,4 +1,4 @@
-import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 
 import { useData } from "@motor-js/engine";
 
@@ -61,23 +61,14 @@ const DonutExampleCompact = () => {
         select(0, [dataElemNumbers[element[0].index]], false);
       }
     },
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
-    },
   };
 
   return (
     <>
       <div className="header">
-        <h1 className="title">Vertical Bar Chart</h1>
+        <h1 className="title">Pie Chart</h1>
       </div>
-      <Bar data={chartData} options={options} />
+      {dataValues && <Pie data={chartData} options={options} />}
     </>
   );
 };
