@@ -8,7 +8,7 @@ export default function App() {
     <div className="App">
       <div className="ui two column centered grid" style={{ margin: "20px" }}>
         <Card fluid>
-          <Card.Content>
+          <Card.Content style={{ margin: "20px" }}>
             <Pie />
             <ButtonComponent />
           </Card.Content>
