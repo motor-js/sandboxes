@@ -51,7 +51,7 @@ const PieExampleCompact = () => {
     // Create chart instance
     let x = am4core.create("chartdiv", am4charts.PieChart);
 
-    data && data.map((element, index) => (element.Colors = colors[index]));
+    // data && data.map((element, index) => (element.Colors = colors[index]));
 
     // Add data
     x.data = data;
@@ -81,6 +81,7 @@ const PieExampleCompact = () => {
   // Load data into chart
   React.useEffect(() => {
     if (chart.current) {
+      data && data.map((element, index) => (element.Colors = colors[index]));
       chart.current.data = data;
     }
   }, [data]);
