@@ -1,12 +1,13 @@
-import AmChart4Wrapper from "react-amcharts4";
-
-import { PieChart } from "@amcharts/amcharts4/charts";
+import React, { useRef, useLayoutEffect } from "react";
 
 import { useData } from "@motor-js/engine";
 
 // Configure any reguired theme
 import * as am4core from "@amcharts/amcharts4/core";
-import am4themes_material from "@amcharts/amcharts4/themes/material";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
+am4core.useTheme(am4themes_animated);
 
 const PieExampleCompact = () => {
   const colors = [
@@ -44,46 +45,14 @@ const PieExampleCompact = () => {
 
   const { data } = dataSet;
 
-  const labels = data && data.map((c) => c.Category);
-  const dataValues = data && data.map((c) => c.Revenue);
-  const dataElemNumbers = data && data.map((c) => c.elemNumber);
+  const chart = useRef(null);
 
-  const chartData = {
-    labels,
-    datasets: [
-      {
-        label: "# of Votes",
-        data: dataValues,
-        backgroundColor: colors,
-        borderColor: colors,
-        borderWidth: 1,
-      },
-    ],
-  };
+  useLayoutEffect(() => {
+    // Create chart instance
+    let x = am4core.create("chartdiv", am4charts.PieChart);
 
-  const options = {
-    onClick: function (evt, element) {
-      if (element.length > 0) {
-        select(0, [dataElemNumbers[element[0].index]], false);
-      }
-    },
-  };
-
-  am4core.useTheme(am4themes_material);
-
-  const config = {
-    // Create pie series
-    series: [
-      {
-        type: "PieSeries",
-        dataFields: {
-          value: "litres",
-          category: "country",
-        },
-      },
-    ],
     // Add data
-    data: [
+    x.data = [
       {
         country: "Lithuania",
         litres: 501.9,
@@ -120,23 +89,21 @@ const PieExampleCompact = () => {
         country: "The Netherlands",
         litres: 50,
       },
-    ],
-  };
+    ];
 
-  return (
-    <>
-      <div className="header">
-        <h1 className="title">Pie Chart</h1>
-      </div>
-      {dataValues && (
-        <AmChart4Wrapper
-          config={config}
-          id="amcharts-4"
-          chartTypeClass={PieChart}
-        />
-      )}
-    </>
-  );
+    // Add and configure Series
+    let pieSeries = x.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "litres";
+    pieSeries.dataFields.category = "country";
+
+    chart.current = x;
+
+    return () => {
+      x.dispose();
+    };
+  }, []);
+
+  return <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>;
 };
 
 export default PieExampleCompact;
