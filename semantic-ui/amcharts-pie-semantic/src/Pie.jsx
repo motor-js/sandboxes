@@ -51,6 +51,8 @@ const PieExampleCompact = () => {
     // Create chart instance
     let x = am4core.create("chartdiv", am4charts.PieChart);
 
+    data && data.map((element, index) => (element.Colors = colors[index]));
+
     // Add data
     x.data = data;
 
@@ -58,6 +60,16 @@ const PieExampleCompact = () => {
     let pieSeries = x.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "Revenue";
     pieSeries.dataFields.category = "Category";
+    pieSeries.slices.template.propertyFields.fill = "Colors";
+    pieSeries.slices.template.propertyFields.elemNumber = "elemNumber";
+
+    pieSeries.slices.template.events.on(
+      "hit",
+      function (ev) {
+        select(0, [ev.target.elemNumber], false);
+      },
+      this
+    );
 
     chart.current = x;
 
