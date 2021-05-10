@@ -76,7 +76,14 @@ const PieExampleCompact = () => {
     return () => {
       x.dispose();
     };
-  }, [dataSet]);
+  }, []);
+
+  // Load data into chart
+  React.useEffect(() => {
+    if (chart.current) {
+      chart.current.data = data;
+    }
+  }, [data]);
 
   return <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>;
 };
