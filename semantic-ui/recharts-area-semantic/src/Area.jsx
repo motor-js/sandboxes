@@ -11,7 +11,7 @@ import {
 
 import { useData } from "@motor-js/engine";
 
-const DonutExampleCompact = () => {
+const AreaExampleCompact = () => {
   const colors = [
     "#B03060",
     "#FE9A76",
@@ -90,4 +90,4 @@ const DonutExampleCompact = () => {
   );
 };
 
-export default DonutExampleCompact;
+export default AreaExampleCompact;

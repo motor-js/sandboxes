@@ -2,7 +2,7 @@ import { Pie } from "react-chartjs-2";
 
 import { useData } from "@motor-js/engine";
 
-const DonutExampleCompact = () => {
+const PieExampleCompact = () => {
   const colors = [
     "#B03060",
     "#FE9A76",
@@ -73,4 +73,4 @@ const DonutExampleCompact = () => {
   );
 };
 
-export default DonutExampleCompact;
+export default PieExampleCompact;
