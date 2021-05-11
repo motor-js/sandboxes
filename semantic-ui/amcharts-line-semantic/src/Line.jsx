@@ -28,12 +28,12 @@ const LineExampleCompact = () => {
 
   const cols = [
     {
-      qField: "[Category]",
-      qLabel: "Category",
+      qField: "[OrderDate]",
+      qLabel: "date",
     },
     {
       qField: "=sum(Quantity * Price)",
-      qLabel: "Revenue",
+      qLabel: "value",
       qNumType: "M",
       qNumFmt: "£#,##0",
     },
@@ -51,18 +51,6 @@ const LineExampleCompact = () => {
     let x = am4core.create("chartdiv", am4charts.XYChart);
 
     x.paddingRight = 20;
-
-    let data = [];
-    let visits = 10;
-
-    for (let i = 1; i < 366; i++) {
-      visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-      data.push({
-        date: new Date(2018, 0, i),
-        name: "name" + i,
-        value: visits,
-      });
-    }
 
     x.data = data;
 
@@ -90,14 +78,13 @@ const LineExampleCompact = () => {
     };
   }, []);
 
-  // // Load data into chart
-  // useEffect(() => {
-  //   if (chart.current) {
-  //     // TODO Remove once colur addded as item in object
-  //     data && data.map((element, index) => (element.fill = colors[index]));
-  //     chart.current.data = data;
-  //   }
-  // }, [data]);
+  // Load data into chart
+  useEffect(() => {
+    if (chart.current) {
+      // TODO Remove once colur addded as item in object
+      chart.current.data = data;
+    }
+  }, [data]);
 
   return <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>;
 };
