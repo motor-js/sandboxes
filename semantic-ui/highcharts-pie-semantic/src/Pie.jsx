@@ -64,7 +64,8 @@ const BarExampleCompact = () => {
         cursor: "pointer",
         events: {
           click: function (event) {
-            console.log(event);
+            const element = data.filter((e) => e.label === event.point.name);
+            select(0, [element[0].elemNumber], false);
           },
         },
       },
