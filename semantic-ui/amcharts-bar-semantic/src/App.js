@@ -1,6 +1,6 @@
 import "./styles.css";
 import { Card } from "semantic-ui-react";
-import Line from "./Line";
+import Bar from "./Bar";
 import ButtonComponent from "./Button";
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
       <div className="ui two column centered grid" style={{ margin: "20px" }}>
         <Card fluid>
           <Card.Content style={{ margin: "20px" }}>
-            <Line />
+            <Bar />
             <ButtonComponent />
           </Card.Content>
         </Card>
