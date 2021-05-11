@@ -58,6 +58,7 @@ const BarExampleCompact = () => {
     categoryAxis.dataFields.category = "Category";
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.title.text = "Categories";
+    categoryAxis.renderer.inside = true;
 
     let valueAxis = x.yAxes.push(new am4charts.ValueAxis());
     valueAxis.title.text = "Revenue";
@@ -69,6 +70,15 @@ const BarExampleCompact = () => {
     series.dataFields.valueY = "Revenue";
     series.tooltipText = "{valueY.value}";
     x.cursor = new am4charts.XYCursor();
+
+    var columnTemplate = series.columns.template;
+    columnTemplate.adapter.add("fill", function (fill, target) {
+      return colors[target.dataItem.index];
+    });
+
+    columnTemplate.adapter.add("stroke", function (stroke, target) {
+      return colors[target.dataItem.index];
+    });
 
     chart.current = x;
 
