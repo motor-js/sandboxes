@@ -69,9 +69,20 @@ const BarExampleCompact = () => {
     series.dataFields.categoryX = "Category";
     series.dataFields.valueY = "Revenue";
     series.tooltipText = "{valueY.value}";
+    series.columns.template.propertyFields.elemNumber = "elemNumber";
+
     x.cursor = new am4charts.XYCursor();
 
     var columnTemplate = series.columns.template;
+
+    columnTemplate.events.on(
+      "hit",
+      function (ev) {
+        select(0, [ev.target.elemNumber], false);
+      },
+      this
+    );
+
     columnTemplate.adapter.add("fill", function (fill, target) {
       return colors[target.dataItem.index];
     });
@@ -79,6 +90,10 @@ const BarExampleCompact = () => {
     columnTemplate.adapter.add("stroke", function (stroke, target) {
       return colors[target.dataItem.index];
     });
+
+    let scrollbarX = new am4charts.XYChartScrollbar();
+    scrollbarX.series.push(series);
+    x.scrollbarX = scrollbarX;
 
     chart.current = x;
 
@@ -91,7 +106,6 @@ const BarExampleCompact = () => {
   useEffect(() => {
     if (chart.current) {
       // TODO Remove once colur addded as item in object
-      // data && data.map((element, index) => (element.fill = colors[index]));
       chart.current.data = data;
     }
   }, [data]);
