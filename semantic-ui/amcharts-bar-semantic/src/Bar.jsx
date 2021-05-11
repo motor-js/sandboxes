@@ -91,10 +91,6 @@ const BarExampleCompact = () => {
       return colors[target.dataItem.index];
     });
 
-    let scrollbarX = new am4charts.XYChartScrollbar();
-    scrollbarX.series.push(series);
-    x.scrollbarX = scrollbarX;
-
     chart.current = x;
 
     return () => {
