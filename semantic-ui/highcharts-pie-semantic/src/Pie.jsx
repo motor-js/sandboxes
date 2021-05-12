@@ -3,7 +3,7 @@ import HighchartsReact from "highcharts-react-official";
 
 import { useData } from "@motor-js/engine";
 
-const BarExampleCompact = () => {
+const PieExampleCompact = () => {
   const colors = [
     "#B03060",
     "#FE9A76",
@@ -88,4 +88,4 @@ const BarExampleCompact = () => {
   );
 };
 
-export default BarExampleCompact;
+export default PieExampleCompact;

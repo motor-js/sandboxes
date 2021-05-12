@@ -40,6 +40,7 @@ const BarExampleCompact = () => {
   const { data } = dataSet;
 
   const chartData = data && data.map((p) => [p.Category, p.Revenue]);
+  const chartCatergories = data && data.map((p) => [p.Category]);
 
   const options = {
     chart: {
@@ -52,14 +53,7 @@ const BarExampleCompact = () => {
       text: 'built using: <a href="https://www.motor.so/">Motor</a>',
     },
     xAxis: {
-      type: "category",
-      labels: {
-        rotation: -45,
-        style: {
-          fontSize: "13px",
-          fontFamily: "Verdana, sans-serif",
-        },
-      },
+      categories: chartCatergories,
     },
     yAxis: {
       min: 0,
@@ -71,7 +65,7 @@ const BarExampleCompact = () => {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "Revenue in 2008: <b>{point.y:.1f} millions</b>",
+      pointFormat: "Revenue: <b>{point.y:.1f} millions</b>",
     },
     colors,
     plotOptions: {
@@ -85,7 +79,6 @@ const BarExampleCompact = () => {
         },
       },
     },
-
     series: [
       {
         name: "Revenue",
@@ -99,7 +92,7 @@ const BarExampleCompact = () => {
   return (
     <>
       <div className="header">
-        <h1 className="title">Vertical Bar Chart</h1>
+        <h1 className="title">Highcharts Column Chart</h1>
       </div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </>
