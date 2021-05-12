@@ -46,7 +46,7 @@ const BarExampleCompact = () => {
       type: "pie",
     },
     title: {
-      text: "Revenue values by category",
+      text: "Revenue values by Category",
     },
     subtitle: {
       text: 'built using: <a href="https://www.motor.so/">Motor</a>',
