@@ -50,7 +50,7 @@ const BarExampleCompact = () => {
       text: "Revenue values by Category",
     },
     subtitle: {
-      text: 'built using: <a href="https://www.motor.so/">Motor</a>',
+      text: 'built using: <a href="https://www.motor.so/" style="color:#FF7272; font-size: 1.25em;">Motor</a>',
     },
     xAxis: {
       categories: chartCatergories,

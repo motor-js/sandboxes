@@ -1,9 +1,9 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import logo from "./assets//motor-red.png";
-
 import { useData } from "@motor-js/engine";
+
+// #FF7272
 
 const LineExampleCompact = () => {
   const colors = [
@@ -44,18 +44,12 @@ const LineExampleCompact = () => {
   const chartData = data && data.map((p) => [p.OrderDate, p.Revenue]);
   const chartCatergories = data && data.map((p) => [p.OrderDate]);
 
-  // <img
-  //   src={logoLight}
-  //   alt="Logo"
-  //   style={{ height: "40px", width: "120px" }}
-  // />;
-
   const options = {
     title: {
       text: "Revenue by Order Date",
     },
     subtitle: {
-      text: 'built using: <a href="https://www.motor.so/">Motor</a>',
+      text: 'built using: <a href="https://www.motor.so/" style="color:#FF7272; font-size: 1.25em;">Motor</a>',
     },
     xAxis: {
       categories: chartCatergories,
@@ -95,7 +89,7 @@ const LineExampleCompact = () => {
   return (
     <>
       <div className="header">
-        <h1 className="title">Highcharts Column Chart</h1>
+        <h1 className="title">Highcharts Line Chart</h1>
       </div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </>
