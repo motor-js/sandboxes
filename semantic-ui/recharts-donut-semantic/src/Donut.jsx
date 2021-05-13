@@ -34,8 +34,9 @@ const DonutExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "Revenue",
-      qNumType: "M",
-      qNumFmt: "£#,##0",
+      // useFormatting: true,
+      // qNumType: "M",
+      // qNumFmt: "£#,##0",
     },
   ];
 
