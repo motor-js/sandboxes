@@ -3,22 +3,6 @@ import { VictoryLabel, VictoryAxis, VictoryLine } from "victory";
 import { useData } from "@motor-js/engine";
 
 const CustomChartExampleComponent = () => {
-  const colors = [
-    "#B03060",
-    "#FE9A76",
-    "#FFD700",
-    "#32CD32",
-    "#016936",
-    "#008080",
-    "#0E6EB8",
-    "#EE82EE",
-    "#B413EC",
-    "#FF1493",
-    "#A52A2A",
-    "#A0A0A0",
-    "#000000",
-  ];
-
   const cols = [
     {
       qField: "[OrderDate]",
@@ -40,20 +24,13 @@ const CustomChartExampleComponent = () => {
 
   const { data } = dataSet;
 
-  const dataSource =
+  // const tickValues = data && data.map((c) => new Date(c.OrderDate));
+  const tickValues =
     data &&
     data.map((c) => {
-      return {
-        x: c.OrderDate,
-        aa: Date.parse(c.OrderDate),
-        bb: new Date(c.OrderDate),
-        y: c.Revenue,
-        z: c.Quantities,
-        elemNumber: c.elemNumber,
-      };
+      const date = new Date(c.OrderDate);
+      return new Date(date.getFullYear(), date.getMonth());
     });
-
-  const tickValues = data && data.map((c) => new Date(c.OrderDate));
   const startDate = Math.min.apply(Math, tickValues);
   const endDate = Math.max.apply(Math, tickValues);
 
@@ -109,10 +86,11 @@ const CustomChartExampleComponent = () => {
         axisYears: {
           axis: { stroke: "black", strokeWidth: 1 },
           ticks: {
-            size: ({ tick }) => {
-              const tickSize = tick.getFullYear() % 5 === 0 ? 10 : 5;
-              return tickSize;
-            },
+            // size: ({ tick }) => {
+            //   const tickSize = tick.getFullYear() % 5 === 0 ? 10 : 5;
+            //   return tickSize;
+            // },
+            size: 10,
             stroke: "black",
             strokeWidth: 1,
           },
@@ -232,13 +210,13 @@ const CustomChartExampleComponent = () => {
                 style={styles.axisYears}
                 tickValues={tickValues}
                 tickFormat={(x) => {
-                  // if (x.getFullYear() === 2000) {
-                  //   return x.getFullYear();
-                  // }
-                  // if (x.getFullYear() % 5 === 0) {
-                  //   return x.getFullYear().toString().slice(2);
-                  // }
-                  x.getFullYear();
+                  if (x.getMonth() % 3 === 0) {
+                    return (
+                      x.toLocaleString("default", { month: "short" }) +
+                      "-" +
+                      x.getFullYear().toString().slice(2)
+                    );
+                  }
                 }}
               />
 
