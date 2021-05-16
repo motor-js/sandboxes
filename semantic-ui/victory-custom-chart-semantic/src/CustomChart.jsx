@@ -19,20 +19,6 @@ const CustomChartExampleComponent = () => {
     "#000000",
   ];
 
-  // const cols = [
-  //   {
-  //     qField: "[Category]",
-  //     qLabel: "Category",
-  //   },
-  //   {
-  //     qField: "=sum(Quantity * Price)",
-  //     qLabel: "Revenue",
-  //     useFormatting: true,
-  //     qNumType: "M",
-  //     qNumFmt: "£#,##0",
-  //   },
-  // ];
-
   const cols = [
     {
       qField: "[OrderDate]",
@@ -41,16 +27,10 @@ const CustomChartExampleComponent = () => {
     {
       qField: "=sum(Quantity * Price)/1000",
       qLabel: "Revenue",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
     {
       qField: "=sum(Quantity)",
       qLabel: "Quantities",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -252,12 +232,13 @@ const CustomChartExampleComponent = () => {
                 style={styles.axisYears}
                 tickValues={tickValues}
                 tickFormat={(x) => {
-                  if (x.getFullYear() === 2000) {
-                    return x.getFullYear();
-                  }
-                  if (x.getFullYear() % 5 === 0) {
-                    return x.getFullYear().toString().slice(2);
-                  }
+                  // if (x.getFullYear() === 2000) {
+                  //   return x.getFullYear();
+                  // }
+                  // if (x.getFullYear() % 5 === 0) {
+                  //   return x.getFullYear().toString().slice(2);
+                  // }
+                  x.getFullYear();
                 }}
               />
 
@@ -308,7 +289,8 @@ const CustomChartExampleComponent = () => {
           */}
               <VictoryAxis
                 dependentAxis
-                domain={[0, 50]}
+                // domain={[0, 50]}
+                domain={[dataSetTwoValuesMin, dataSetTwoValuesMax]}
                 orientation="right"
                 standalone={false}
                 style={styles.axisTwo}
