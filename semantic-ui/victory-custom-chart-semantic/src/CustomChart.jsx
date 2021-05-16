@@ -19,17 +19,38 @@ const CustomChartExampleComponent = () => {
     "#000000",
   ];
 
+  // const cols = [
+  //   {
+  //     qField: "[Category]",
+  //     qLabel: "Category",
+  //   },
+  //   {
+  //     qField: "=sum(Quantity * Price)",
+  //     qLabel: "Revenue",
+  //     useFormatting: true,
+  //     qNumType: "M",
+  //     qNumFmt: "£#,##0",
+  //   },
+  // ];
+
   const cols = [
     {
-      qField: "[Category]",
-      qLabel: "Category",
+      qField: "[OrderDate]",
+      qLabel: "OrderDate",
     },
     {
-      qField: "=sum(Quantity * Price)",
+      qField: "=sum(Quantity * Price)/1000",
       qLabel: "Revenue",
-      useFormatting: true,
-      qNumType: "M",
-      qNumFmt: "£#,##0",
+      // useFormatting: true,
+      // qNumType: "M",
+      // qNumFmt: "£#,##0",
+    },
+    {
+      qField: "=sum(Quantity)",
+      qLabel: "Quantities",
+      // useFormatting: true,
+      // qNumType: "M",
+      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -42,62 +63,39 @@ const CustomChartExampleComponent = () => {
   const dataSource =
     data &&
     data.map((c) => {
-      return { x: c.Category, y: c.Revenue, elemNumber: c.elemNumber };
+      return {
+        x: c.OrderDate,
+        aa: Date.parse(c.OrderDate),
+        bb: new Date(c.OrderDate),
+        y: c.Revenue,
+        z: c.Quantities,
+        elemNumber: c.elemNumber,
+      };
     });
 
-  const tickValues = [
-    new Date(1999, 1, 1),
-    new Date(2000, 1, 1),
-    new Date(2001, 1, 1),
-    new Date(2002, 1, 1),
-    new Date(2003, 1, 1),
-    new Date(2004, 1, 1),
-    new Date(2005, 1, 1),
-    new Date(2006, 1, 1),
-    new Date(2007, 1, 1),
-    new Date(2008, 1, 1),
-    new Date(2009, 1, 1),
-    new Date(2010, 1, 1),
-    new Date(2011, 1, 1),
-    new Date(2012, 1, 1),
-    new Date(2013, 1, 1),
-    new Date(2014, 1, 1),
-    new Date(2015, 1, 1),
-    new Date(2016, 1, 1),
-  ];
+  const tickValues = data && data.map((c) => new Date(c.OrderDate));
+  const startDate = Math.min.apply(Math, tickValues);
+  const endDate = Math.max.apply(Math, tickValues);
 
-  const dataSetOne = [
-    { x: new Date(2000, 1, 1), y: 12 },
-    { x: new Date(2000, 6, 1), y: 10 },
-    { x: new Date(2000, 12, 1), y: 11 },
-    { x: new Date(2001, 1, 1), y: 5 },
-    { x: new Date(2002, 1, 1), y: 4 },
-    { x: new Date(2003, 1, 1), y: 6 },
-    { x: new Date(2004, 1, 1), y: 5 },
-    { x: new Date(2005, 1, 1), y: 7 },
-    { x: new Date(2006, 1, 1), y: 8 },
-    { x: new Date(2007, 1, 1), y: 9 },
-    { x: new Date(2008, 1, 1), y: -8.5 },
-    { x: new Date(2009, 1, 1), y: -9 },
-    { x: new Date(2010, 1, 1), y: 5 },
-    { x: new Date(2013, 1, 1), y: 1 },
-    { x: new Date(2014, 1, 1), y: 2 },
-    { x: new Date(2015, 1, 1), y: -5 },
-  ];
+  const dataSetOneValues = data && data.map((c) => c.Revenue);
+  const dataSetOneValuesMin = data && Math.min.apply(Math, dataSetOneValues);
+  const dataSetOneValuesMax = data && Math.max.apply(Math, dataSetOneValues);
 
-  const dataSetTwo = [
-    { x: new Date(2000, 1, 1), y: 5 },
-    { x: new Date(2003, 1, 1), y: 6 },
-    { x: new Date(2004, 1, 1), y: 4 },
-    { x: new Date(2005, 1, 1), y: 10 },
-    { x: new Date(2006, 1, 1), y: 12 },
-    { x: new Date(2007, 2, 1), y: 48 },
-    { x: new Date(2008, 1, 1), y: 19 },
-    { x: new Date(2009, 1, 1), y: 31 },
-    { x: new Date(2011, 1, 1), y: 49 },
-    { x: new Date(2014, 1, 1), y: 40 },
-    { x: new Date(2015, 1, 1), y: 21 },
-  ];
+  const dataSetOne =
+    data &&
+    data.map((c) => {
+      return { x: new Date(c.OrderDate), y: c.Revenue };
+    });
+
+  const dataSetTwoValues = data && data.map((c) => c.Quantities);
+  const dataSetTwoValuesMin = data && Math.min.apply(Math, dataSetTwoValues);
+  const dataSetTwoValuesMax = data && Math.max.apply(Math, dataSetTwoValues);
+
+  const dataSetTwo =
+    data &&
+    data.map((c) => {
+      return { x: new Date(c.OrderDate), y: c.Quantities };
+    });
 
   const getStyles = () => {
     {
@@ -166,7 +164,7 @@ const CustomChartExampleComponent = () => {
           fontStyle: "italic",
         },
         lineOne: {
-          data: { stroke: BLUE_COLOR, strokeWidth: 4.5 },
+          data: { stroke: BLUE_COLOR, strokeWidth: 0.5 },
         },
         axisOneCustomLabel: {
           fill: BLUE_COLOR,
@@ -192,7 +190,7 @@ const CustomChartExampleComponent = () => {
           fontStyle: "italic",
         },
         lineTwo: {
-          data: { stroke: RED_COLOR, strokeWidth: 4.5 },
+          data: { stroke: RED_COLOR, strokeWidth: 0.5 },
         },
 
         // HORIZONTAL LINE
@@ -219,7 +217,7 @@ const CustomChartExampleComponent = () => {
         }}
       >*/}
       <div>
-        {dataSource && (
+        {data && (
           <svg style={styles.parent} viewBox="0 0 450 350">
             {/* Create stylistic elements */}
             <rect x="0" y="0" width="10" height="30" fill="#f01616" />
@@ -269,7 +267,7 @@ const CustomChartExampleComponent = () => {
           */}
               <VictoryAxis
                 dependentAxis
-                domain={[-10, 15]}
+                domain={[dataSetOneValuesMin, dataSetOneValuesMax]}
                 offsetX={50}
                 orientation="left"
                 standalone={false}
@@ -279,12 +277,12 @@ const CustomChartExampleComponent = () => {
               {/* Red annotation line */}
               <VictoryLine
                 data={[
-                  { x: new Date(1999, 1, 1), y: 0 },
-                  { x: new Date(2014, 6, 1), y: 0 },
+                  { x: startDate, y: 20 },
+                  { x: endDate, y: 20 },
                 ]}
                 domain={{
-                  x: [new Date(1999, 1, 1), new Date(2016, 1, 1)],
-                  y: [-10, 15],
+                  x: [startDate, endDate],
+                  y: [dataSetOneValuesMin, dataSetOneValuesMax],
                 }}
                 scale={{ x: "time", y: "linear" }}
                 standalone={false}
@@ -295,8 +293,8 @@ const CustomChartExampleComponent = () => {
               <VictoryLine
                 data={dataSetOne}
                 domain={{
-                  x: [new Date(1999, 1, 1), new Date(2016, 1, 1)],
-                  y: [-10, 15],
+                  x: [startDate, endDate],
+                  y: [dataSetOneValuesMin, dataSetOneValuesMax],
                 }}
                 interpolation="monotoneX"
                 scale={{ x: "time", y: "linear" }}
@@ -320,8 +318,8 @@ const CustomChartExampleComponent = () => {
               <VictoryLine
                 data={dataSetTwo}
                 domain={{
-                  x: [new Date(1999, 1, 1), new Date(2016, 1, 1)],
-                  y: [0, 50],
+                  x: [startDate, endDate],
+                  y: [dataSetTwoValuesMin, dataSetTwoValuesMax],
                 }}
                 interpolation="monotoneX"
                 scale={{ x: "time", y: "linear" }}
