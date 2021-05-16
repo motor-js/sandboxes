@@ -46,8 +46,6 @@ const BarExampleCompact = () => {
 
   const { data } = dataSet;
 
-  console.log(data);
-
   const chart = useRef(null);
 
   useLayoutEffect(() => {
