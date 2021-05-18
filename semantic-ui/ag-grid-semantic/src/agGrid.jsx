@@ -37,13 +37,20 @@ const GridExampleComponent = () => {
     select(c.columnId, [c.elemNumber], false);
   };
 
-  console.log(dataSet, headerGroup);
+  const onGridReady = (params) => {
+    params.api.sizeColumnsToFit();
+  };
 
-  const rowData = [
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxter", price: 72000 },
-  ];
+  const rowData =
+    dataSet &&
+    dataSet.map((d, i) => {
+      const item = {};
+      headerGroup.map((h, j) => {
+        item[h.dataKey] = d[h.dataKey].text;
+      });
+
+      return item;
+    });
 
   return (
     // <div style={{ padding: "10px" }}>
@@ -90,14 +97,26 @@ const GridExampleComponent = () => {
     //     </Table>
     //   )}
     // </div>
-    <div className="ag-theme-alpine" style={{ height: 400 }}>
-      {dataSet && (
-        <AgGridReact rowData={rowData}>
-          <AgGridColumn field="make" suppressSizeToFit={false}></AgGridColumn>
-          <AgGridColumn field="model"></AgGridColumn>
-          <AgGridColumn field="price"></AgGridColumn>
-        </AgGridReact>
-      )}
+    <div style={{ padding: "10px" }}>
+      <div className="ag-theme-alpine" style={{ height: 500 }}>
+        {dataSet && (
+          <AgGridReact
+            rowData={rowData} // events
+            onGridReady={onGridReady}
+          >
+            {/* <AgGridColumn field="make" suppressSizeToFit={true}></AgGridColumn> */}
+            <AgGridColumn
+              headerName="Company Name"
+              field="company"
+            ></AgGridColumn>
+            <AgGridColumn
+              headerName="Quantity Sold"
+              field="quantity"
+            ></AgGridColumn>
+            <AgGridColumn headerName="Revenue" field="revenue"></AgGridColumn>
+          </AgGridReact>
+        )}
+      </div>
     </div>
   );
 };
