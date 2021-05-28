@@ -36,13 +36,10 @@ const BarExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "Revenue",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
-  const { dataSet, select } = useData({
+  const { dataSet, nameKey, select } = useData({
     cols,
   });
 
@@ -52,7 +49,7 @@ const BarExampleCompact = () => {
     <ResponsiveContainer width="100%" height={250}>
       {data ? (
         <BarChart data={data} margin={10}>
-          <XAxis dataKey="Category" />
+          <XAxis dataKey={nameKey} />
           <YAxis />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
@@ -61,7 +58,7 @@ const BarExampleCompact = () => {
             dataKeys.map((key, index) => (
               <Bar
                 // TODO replace nameKey={nameKey} from useData
-                nameKey="Category"
+                nameKey={nameKey}
                 key={index}
                 dataKey={key}
                 fill={colors[index]}
