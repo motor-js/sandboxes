@@ -36,9 +36,6 @@ const AreaExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "Revenue",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -46,7 +43,7 @@ const AreaExampleCompact = () => {
     cols,
   });
 
-  const { data, dataKeys } = dataSet;
+  const { data, dataKeys, nameKey } = dataSet;
 
   const handleSelect = (c, i) => {
     const points = c.points;
@@ -61,7 +58,7 @@ const AreaExampleCompact = () => {
     <ResponsiveContainer width="100%" height={250}>
       {data ? (
         <AreaChart data={data} margin={10}>
-          <XAxis dataKey="Category" />
+          <XAxis dataKey={nameKey} />
           <YAxis />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
@@ -69,8 +66,7 @@ const AreaExampleCompact = () => {
           {dataKeys &&
             dataKeys.map((key, index) => (
               <Area
-                // TODO replace nameKey={nameKey} from useData
-                nameKey="Category"
+                nameKey={nameKey}
                 key={index}
                 dataKey={key}
                 fill={colors[index]}

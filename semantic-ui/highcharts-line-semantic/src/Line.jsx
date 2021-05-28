@@ -3,8 +3,6 @@ import HighchartsReact from "highcharts-react-official";
 
 import { useData } from "@motor-js/engine";
 
-// #FF7272
-
 const LineExampleCompact = () => {
   const colors = [
     "#B03060",
@@ -30,9 +28,6 @@ const LineExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "Revenue",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -40,7 +35,7 @@ const LineExampleCompact = () => {
     cols,
   });
 
-  const { data } = dataSet;
+  const { data, valueKey } = dataSet;
 
   const chartData = data && data.map((p) => [p.OrderDate, p.Revenue]);
   const chartCatergories = data && data.map((p) => [p.OrderDate]);
@@ -81,7 +76,7 @@ const LineExampleCompact = () => {
     },
     series: [
       {
-        name: "Revenue",
+        name: valueKey,
         data: chartData,
       },
     ],

@@ -18,13 +18,12 @@ const CustomChartExampleComponent = () => {
     },
   ];
 
-  const { dataSet, select } = useData({
+  const { dataSet } = useData({
     cols,
   });
 
   const { data } = dataSet;
 
-  // const tickValues = data && data.map((c) => new Date(c.OrderDate));
   const tickValues =
     data &&
     data.map((c) => {
@@ -86,10 +85,6 @@ const CustomChartExampleComponent = () => {
         axisYears: {
           axis: { stroke: "black", strokeWidth: 1 },
           ticks: {
-            // size: ({ tick }) => {
-            //   const tickSize = tick.getFullYear() % 5 === 0 ? 10 : 5;
-            //   return tickSize;
-            // },
             size: 10,
             stroke: "black",
             strokeWidth: 1,
@@ -163,17 +158,6 @@ const CustomChartExampleComponent = () => {
 
   return (
     <>
-      {/* <div className="header">
-        <h1 className="title">Pie Chart</h1>
-      </div> */}
-
-      {/* <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >*/}
       <div>
         {data && (
           <svg style={styles.parent} viewBox="0 0 450 350">
@@ -290,7 +274,6 @@ const CustomChartExampleComponent = () => {
           </svg>
         )}
       </div>
-      {/* </div> */}
     </>
   );
 };

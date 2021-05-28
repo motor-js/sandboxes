@@ -34,9 +34,6 @@ const PieExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "Revenue",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -44,7 +41,7 @@ const PieExampleCompact = () => {
     cols,
   });
 
-  const { data } = dataSet;
+  const { data, nameKey, valueKey } = dataSet;
 
   const chart = useRef(null);
 
@@ -57,8 +54,8 @@ const PieExampleCompact = () => {
 
     // Add and configure Series
     let pieSeries = x.series.push(new am4charts.PieSeries());
-    pieSeries.dataFields.value = "Revenue";
-    pieSeries.dataFields.category = "Category";
+    pieSeries.dataFields.value = valueKey;
+    pieSeries.dataFields.category = nameKey;
     pieSeries.slices.template.propertyFields.fill = "fill";
     pieSeries.slices.template.propertyFields.elemNumber = "elemNumber";
 
@@ -75,12 +72,11 @@ const PieExampleCompact = () => {
     return () => {
       x.dispose();
     };
-  }, []);
+  }, [nameKey, valueKey]);
 
   // Load data into chart
   useEffect(() => {
     if (chart.current) {
-      // TODO Remove once colur addded as item in object
       data && data.map((element, index) => (element.fill = colors[index]));
       chart.current.data = data;
     }

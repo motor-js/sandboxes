@@ -102,7 +102,6 @@ const BarExampleCompact = () => {
   // Load data into chart
   useEffect(() => {
     if (chart.current) {
-      // TODO Remove once colur addded as item in object
       chart.current.data = data;
     }
   }, [data]);

@@ -34,9 +34,6 @@ const DonutExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "Revenue",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -44,7 +41,7 @@ const DonutExampleCompact = () => {
     cols,
   });
 
-  const { data, dataKeys } = dataSet;
+  const { data, dataKeys, nameKey } = dataSet;
 
   return (
     <ResponsiveContainer width="100%" height={250}>
@@ -53,8 +50,7 @@ const DonutExampleCompact = () => {
           {dataKeys &&
             dataKeys.map((key, index) => (
               <Pie
-                // TODO replace nameKey={nameKey} from useData
-                nameKey="Category"
+                nameKey={nameKey}
                 key={index}
                 dataKey={key}
                 isAnimationActive={false}

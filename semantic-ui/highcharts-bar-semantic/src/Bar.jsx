@@ -28,9 +28,6 @@ const BarExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "Revenue",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -38,7 +35,7 @@ const BarExampleCompact = () => {
     cols,
   });
 
-  const { data } = dataSet;
+  const { data, valueKey } = dataSet;
 
   const chartData = data && data.map((p) => [p.Category, p.Revenue]);
   const chartCatergories = data && data.map((p) => [p.Category]);
@@ -82,7 +79,7 @@ const BarExampleCompact = () => {
     },
     series: [
       {
-        name: "Revenue",
+        name: valueKey,
         colorByPoint: true,
         data: chartData,
         colors,

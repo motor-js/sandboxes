@@ -1,12 +1,12 @@
 {
-  "name": "motor-amcharts-pie-semantic",
+  "name": "motor-amcharts-line-semantic",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.18",
-    "@motor-js/engine": "0.1.11",
+    "@motor-js/engine": "0.1.13",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.0",

@@ -28,9 +28,6 @@ const PieExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "Revenue",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -38,7 +35,7 @@ const PieExampleCompact = () => {
     cols,
   });
 
-  const { data } = dataSet;
+  const { data, valueKey } = dataSet;
 
   const chartData = data && data.map((p) => [p.Category, p.Revenue]);
 
@@ -73,7 +70,7 @@ const PieExampleCompact = () => {
     },
     series: [
       {
-        name: "Revenue",
+        name: valueKey,
         data: chartData,
       },
     ],

@@ -57,7 +57,6 @@ const BarExampleCompact = () => {
           {dataKeys &&
             dataKeys.map((key, index) => (
               <Bar
-                // TODO replace nameKey={nameKey} from useData
                 nameKey={nameKey}
                 key={index}
                 dataKey={key}

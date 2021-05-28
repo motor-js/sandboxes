@@ -44,7 +44,7 @@ const PieExampleCompact = () => {
     cols,
   });
 
-  const { data, dataKeys } = dataSet;
+  const { data, dataKeys, nameKey } = dataSet;
 
   return (
     <ResponsiveContainer width="100%" height={250}>
@@ -53,8 +53,7 @@ const PieExampleCompact = () => {
           {dataKeys &&
             dataKeys.map((key, index) => (
               <Pie
-                // TODO replace nameKey={nameKey} from useData
-                nameKey="Category"
+                nameKey={nameKey}
                 key={index}
                 dataKey={key}
                 isAnimationActive={false}

@@ -34,9 +34,6 @@ const LineExampleCompact = () => {
     {
       qField: "=sum(Quantity * Price)",
       qLabel: "value",
-      // useFormatting: true,
-      // qNumType: "M",
-      // qNumFmt: "£#,##0",
     },
   ];
 
@@ -82,7 +79,6 @@ const LineExampleCompact = () => {
   // Load data into chart
   useEffect(() => {
     if (chart.current) {
-      // TODO Remove once colur addded as item in object
       chart.current.data = data;
     }
   }, [data]);
