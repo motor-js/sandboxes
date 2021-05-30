@@ -8,7 +8,7 @@ ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 import { useData } from "@motor-js/engine";
 
 const BarExampleCompact = () => {
-  const colors = [
+  const paletteColors = [
     "#B03060",
     "#FE9A76",
     "#FFD700",
@@ -52,6 +52,7 @@ const BarExampleCompact = () => {
       yAxisName: valueKey,
       numberSuffix: "K",
       theme: "fusion",
+      paletteColors,
     },
     data: chartData,
   };
