@@ -64,12 +64,20 @@ const BarExampleCompact = () => {
     dataSource,
   };
 
+  // Event listener for dataplotclick event on chart. Update message with data plot values.
+  const dataPlotClick = (eventObj, dataObj) => {
+    if (data && data[dataObj.dataIndex])
+      select(0, [data[dataObj.dataIndex].elemNumber], false);
+  };
+
+  FusionCharts.addEventListener("dataplotClick", dataPlotClick);
+
   return (
     <>
       <div className="header">
         <h1 className="title">Fusioncharts Column2d Chart</h1>
       </div>
-      <ReactFC {...chartConfigs} />;
+      <ReactFC {...chartConfigs} />
     </>
   );
 };
