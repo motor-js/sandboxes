@@ -35,10 +35,10 @@ const LineExampleCompact = () => {
     cols,
   });
 
-  const { data, valueKey } = dataSet;
+  const { data, nameKey, valueKey } = dataSet;
 
-  const chartData = data && data.map((p) => [p.OrderDate, p.Revenue]);
-  const chartCatergories = data && data.map((p) => [p.OrderDate]);
+  const chartData = data && data.map((p) => [p[nameKey], p[valueKey]]);
+  const chartCatergories = data && data.map((p) => [p[nameKey]]);
 
   const options = {
     title: {

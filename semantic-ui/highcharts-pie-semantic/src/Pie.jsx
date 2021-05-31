@@ -35,9 +35,9 @@ const PieExampleCompact = () => {
     cols,
   });
 
-  const { data, valueKey } = dataSet;
+  const { data, nameKey, valueKey } = dataSet;
 
-  const chartData = data && data.map((p) => [p.Category, p.Revenue]);
+  const chartData = data && data.map((p) => [p[nameKey], p[valueKey]]);
 
   const options = {
     chart: {

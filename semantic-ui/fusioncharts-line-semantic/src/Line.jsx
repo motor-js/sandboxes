@@ -7,7 +7,7 @@ ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 import { useData } from "@motor-js/engine";
 
-const PieExampleCompact = () => {
+const LineExampleCompact = () => {
   const paletteColors = [
     "#B03060",
     "#FE9A76",
@@ -26,8 +26,8 @@ const PieExampleCompact = () => {
 
   const cols = [
     {
-      qField: "[Category]",
-      qLabel: "Category",
+      qField: "[OrderDate]",
+      qLabel: "OrderDate",
     },
     {
       qField: "=sum(Quantity * Price)",
@@ -62,7 +62,7 @@ const PieExampleCompact = () => {
   };
 
   const chartConfigs = {
-    type: "pie2d",
+    type: "line",
     width: "100%",
     height: 400,
     dataFormat: "json",
@@ -80,11 +80,11 @@ const PieExampleCompact = () => {
   return (
     <>
       <div className="header">
-        <h1 className="title">Fusioncharts Pie Chart</h1>
+        <h1 className="title">Fusioncharts Line Chart</h1>
       </div>
       <ReactFC {...chartConfigs} />
     </>
   );
 };
 
-export default PieExampleCompact;
+export default LineExampleCompact;

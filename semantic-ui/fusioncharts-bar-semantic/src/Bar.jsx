@@ -42,7 +42,7 @@ const BarExampleCompact = () => {
   const { data, valueKey, nameKey } = dataSet;
 
   const chartData =
-    data && data.map((p) => ({ label: p.Category, value: p.Revenue }));
+    data && data.map((p) => ({ label: p[nameKey], value: p[valueKey] }));
 
   const dataSource = {
     chart: {
