@@ -1,12 +1,9 @@
-import React, { Component } from "react";
 import FusionCharts from "fusioncharts";
 import Maps from "fusioncharts/fusioncharts.maps";
 
-//download all map from https://cdn.fusioncharts.com/downloads/addons/fusionmaps-xt-definition.zip
-import WorldWithCountries from "fusioncharts/maps/fusioncharts.worldwithcountries";
+import WorldWithCountries from "fusionmaps/maps/fusioncharts.worldwithcountries";
 import ReactFC from "react-fusioncharts";
 import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
-import World from "fusioncharts/maps/fusioncharts.world";
 
 ReactFC.fcRoot(FusionCharts, Maps, WorldWithCountries, FusionTheme);
 
@@ -40,7 +37,7 @@ const PieExampleCompact = () => {
     },
   ];
 
-  const { dataSet, select } = useData({
+  const { dataSet } = useData({
     cols,
   });
 
