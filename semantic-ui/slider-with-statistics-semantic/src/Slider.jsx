@@ -5,10 +5,11 @@ import { Label } from "semantic-ui-react";
 import { useVariable } from "@motor-js/engine";
 
 const SliderExample = () => {
-  const { qLayout, qInfo, value, setProperties } = useVariable({
-    qName: "test123",
-    qDefinition: "=Count(Country)",
+  const { value, setProperties } = useVariable({
+    qName: "newVar2",
+    qDefinition: "3,5",
   });
+
   const [multipleValues, setMultipleValues] = useState([2, 12]);
   const settings = {
     start: [2, 12],
@@ -20,8 +21,6 @@ const SliderExample = () => {
       setProperties({ qId: "test123", qDefinition: value.toString() });
     },
   };
-
-  console.log(qLayout);
 
   return (
     <>
