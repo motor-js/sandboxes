@@ -1,13 +1,16 @@
+import React from "react";
 import ReactDOM from "react-dom";
-import { Motor } from "@motor-js/engine";
-import { qlikConfig } from "./config";
-import App from "./App";
+import "./index.css";
+import NewApp from "./NewApp";
+import reportWebVitals from "./reportWebVitals";
 import "semantic-ui-css/semantic.min.css";
 
-const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <Motor config={qlikConfig}>
-    <App />
-  </Motor>,
-  rootElement
+    <NewApp />,
+  document.getElementById("root")
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

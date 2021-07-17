@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Slider } from "react-semantic-ui-range";
 import { Label } from "semantic-ui-react";
 
 import { useVariable } from "@motor-js/engine";
 
-const start = [2, 12];
-const varName = "testVar4";
+const start = [2, 5];
+const name = "testVar66";
 
 const SliderExample = () => {
-  const { value, setProperties } = useVariable({
-    qName: varName,
-    qDefinition: start.toString(),
+  const { value, setValue } = useVariable({
+    name,
+    definition: start,
   });
 
   const [multipleValues, setMultipleValues] = useState(start);
@@ -21,7 +21,7 @@ const SliderExample = () => {
     step: 1,
     onChange: (value) => {
       setMultipleValues(value);
-      setProperties({ qName: varName, qDefinition: value.toString() });
+      setValue(value);
     },
   };
 
